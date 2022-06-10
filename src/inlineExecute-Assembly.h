@@ -61,10 +61,10 @@ typedef BOOL (WINAPI* _FreeConsole) (void);
 typedef BOOL (WINAPI* _SetStdHandle) (DWORD nStdHandle, HANDLE hHandle);
 typedef HANDLE (WINAPI* _GetStdHandle) (DWORD nStdHandle);
 typedef BOOL (WINAPI* _CloseHandle) (HANDLE hObject);
-typedef _Post_equals_last_error_ DWORD (WINAPI* _GetLastError) (void);
-typedef int (WINAPI* _WideCharToMultiByte) (UINT CodePage, DWORD dwFlags, _In_NLS_string_(cchWideChar)LPCWCH lpWideCharStr, int cchWideChar, LPSTR lpMultiByteStr, int cbMultiByte, LPCCH lpDefaultChar, LPBOOL lpUsedDefaultChar);
+typedef /*_Post_equals_last_error_*/ DWORD (WINAPI* _GetLastError) (void);
+typedef int (WINAPI* _WideCharToMultiByte) (UINT CodePage, DWORD dwFlags, /*_In_NLS_string_(cchWideChar)*/LPCWCH lpWideCharStr, int cchWideChar, LPSTR lpMultiByteStr, int cbMultiByte, LPCCH lpDefaultChar, LPBOOL lpUsedDefaultChar);
 typedef LPVOID (WINAPI* _CoTaskMemAlloc) (SIZE_T cb);
-typedef LPVOID (WINAPI* _CoTaskMemFree) (_Frees_ptr_opt_ LPVOID pv);
+typedef LPVOID (WINAPI* _CoTaskMemFree) (/*_Frees_ptr_opt_*/ LPVOID pv);
 typedef HANDLE (WINAPI* _CreateNamedPipeA) (LPCSTR lpName, DWORD dwOpenMode, DWORD dwPipeMode, DWORD nMaxInstances, DWORD nOutBufferSize, DWORD nInBufferSize, DWORD nDefaultTimeOut, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
 typedef NTSTATUS(NTAPI* _NtWriteVirtualMemory)(HANDLE, PVOID, PVOID, ULONG, PULONG);//NtWriteVirtualMemory
 typedef NTSTATUS(NTAPI* _NtProtectVirtualMemory)(HANDLE, PVOID, PULONG, ULONG, PULONG);//NtProtectVirtualMemory
@@ -93,12 +93,12 @@ GUID        xIID_IUnknown;
 GUID        xIID_IDispatch;
 
 //GUID required to load .NET assemblies
-GUID        xCLSID_CLRMetaHost;
+/*GUID        xCLSID_CLRMetaHost;
 GUID        xIID_ICLRMetaHost;
 GUID        xIID_ICLRRuntimeInfo;
 GUID        xCLSID_CorRuntimeHost;
 GUID        xIID_ICorRuntimeHost;
-GUID        xIID_AppDomain;
+GUID        xIID_AppDomain;*/
 
 typedef struct _ICLRMetaHost            ICLRMetaHost;
 typedef struct _ICLRRuntimeInfo         ICLRRuntimeInfo;
@@ -535,13 +535,13 @@ typedef struct ICLRRuntimeInfoVtbl
     HRESULT(STDMETHODCALLTYPE* GetVersionString)(
         ICLRRuntimeInfo* This,
         /* [size_is][out] */
-        __out_ecount_full_opt(*pcchBuffer)  LPWSTR pwzBuffer,
+        /*__out_ecount_full_opt(*pcchBuffer)*/  LPWSTR pwzBuffer,
         /* [out][in] */ DWORD* pcchBuffer);
 
     HRESULT(STDMETHODCALLTYPE* GetRuntimeDirectory)(
         ICLRRuntimeInfo* This,
         /* [size_is][out] */
-        __out_ecount_full(*pcchBuffer)  LPWSTR pwzBuffer,
+        /*__out_ecount_full(*pcchBuffer)*/  LPWSTR pwzBuffer,
         /* [out][in] */ DWORD* pcchBuffer);
 
     HRESULT(STDMETHODCALLTYPE* IsLoaded)(
@@ -553,7 +553,7 @@ typedef struct ICLRRuntimeInfoVtbl
         ICLRRuntimeInfo* This,
         /* [in] */ UINT iResourceID,
         /* [size_is][out] */
-        __out_ecount_full(*pcchBuffer)  LPWSTR pwzBuffer,
+        /*__out_ecount_full(*pcchBuffer)*/  LPWSTR pwzBuffer,
         /* [out][in] */ DWORD* pcchBuffer,
         /* [lcid][in] */ LONG iLocaleID);
 
@@ -586,7 +586,7 @@ typedef struct ICLRRuntimeInfoVtbl
         ICLRRuntimeInfo* This,
         /* [out] */ DWORD* pdwStartupFlags,
         /* [size_is][out] */
-        __out_ecount_full_opt(*pcchHostConfigFile)  LPWSTR pwzHostConfigFile,
+        /*__out_ecount_full_opt(*pcchHostConfigFile)*/  LPWSTR pwzHostConfigFile,
         /* [out][in] */ DWORD* pcchHostConfigFile);
 
     HRESULT(STDMETHODCALLTYPE* BindAsLegacyV2Runtime)(
@@ -634,7 +634,7 @@ typedef struct ICLRMetaHostVtbl
         ICLRMetaHost* This,
         /* [in] */ LPCWSTR pwzFilePath,
         /* [size_is][out] */
-        __out_ecount_full(*pcchBuffer)  LPWSTR pwzBuffer,
+        /*__out_ecount_full(*pcchBuffer)*/  LPWSTR pwzBuffer,
         /* [out][in] */ DWORD* pcchBuffer);
 
     HRESULT(STDMETHODCALLTYPE* EnumerateInstalledRuntimes)(
