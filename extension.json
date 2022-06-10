@@ -1,0 +1,33 @@
+{
+    "name": "InlineExecute-Assembly",
+    "version": "0.0.0",
+    "command_name": "inlineExecute-assembly",
+    "extension_author": "c2biz",
+    "original_author": "anthemtotheego",
+    "repo_url": "https://github.com/sliverarmory/InlineExecute-Assembly",
+    "help": "in process .NET assembly execution",
+    "long_help": "",
+    "depends_on": "coff-loader",
+    "entrypoint": "go",
+    "files": [
+      {
+        "os": "windows",
+        "arch": "amd64",
+        "path": "inlineExecute-Assemblyx64.o"
+      }
+    ],
+    "arguments": [
+      {
+        "name": "dotnetassembly",
+        "desc": "Directory path to your assembly",
+        "type": "file",
+        "optional": false
+      },
+      {
+        "name": "assemblyargs",
+        "desc": "Assembly arguments to pass",
+        "type": "string",
+        "optional": false
+      }
+    ]
+  }
