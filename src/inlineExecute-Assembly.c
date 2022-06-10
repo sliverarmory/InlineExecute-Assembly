@@ -349,9 +349,9 @@ void go(char* args, int length) {//Executes .NET assembly in memory
 	pipeName = BeaconDataExtract(&parser, NULL);*/
 	assemblyByteLen = BeaconDataLength(&parser);
 	char* assemblyBytes = BeaconDataExtract(&parser, NULL);
-	BeaconPrintf(CALLBACK_OUTPUT, "[+] Success - Wrote %d bytes to memory", assemblyByteLen); // Debug Only
+	BeaconPrintf(CALLBACK_OUTPUT, "[+] Success - Wrote %d bytes to memory\n", assemblyByteLen); // Debug Only
 	assemblyArguments = BeaconDataExtract(&parser, NULL);
-	BeaconPrintf(CALLBACK_OUTPUT, "[+] Using argumentS: %s", assemblyArguments); // Debug Only
+	BeaconPrintf(CALLBACK_OUTPUT, "[+] Using arguments: %s\n", assemblyArguments); // Debug Only
 	
 	//Create slot and pipe names	
 	SIZE_T pipeNameLen = MSVCRT$strlen(pipeName);
