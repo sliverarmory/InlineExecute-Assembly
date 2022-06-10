@@ -327,10 +327,10 @@ void go(char* args, int length) {//Executes .NET assembly in memory
 	//Declare beacon parser variables
 	datap  parser;
 	BeaconDataParse(&parser, args, length);
-	char* appDomain = NULL;
+	char* appDomain = "totesLegit";
 	char* assemblyArguments = NULL;
-	char* pipeName = NULL;
-	char* slotName = NULL;
+	char* pipeName = "totesLegit";
+	char* slotName = "totesLegit";
 	BOOL amsi = 0;
 	BOOL etw = 0;
 	BOOL revertETW = 0;
@@ -339,17 +339,19 @@ void go(char* args, int length) {//Executes .NET assembly in memory
 	size_t assemblyByteLen = 0;
 	
 	//Extract data sent
-	appDomain = BeaconDataExtract(&parser, NULL);
+	/*appDomain = BeaconDataExtract(&parser, NULL);
 	amsi = BeaconDataInt(&parser);
 	etw = BeaconDataInt(&parser);
 	revertETW = BeaconDataInt(&parser);
 	mailSlot = BeaconDataInt(&parser);
 	entryPoint = BeaconDataInt(&parser);
 	slotName = BeaconDataExtract(&parser, NULL);
-	pipeName = BeaconDataExtract(&parser, NULL);
-	assemblyArguments = BeaconDataExtract(&parser, NULL);
-	assemblyByteLen = BeaconDataInt(&parser);
+	pipeName = BeaconDataExtract(&parser, NULL);*/
+	assemblyByteLen = BeaconDataLength(&parser);
 	char* assemblyBytes = BeaconDataExtract(&parser, NULL);
+	BeaconPrintf(CALLBACK_OUTPUT, "[+] Success - Wrote %d bytes to memory", assemblyByteLen); // Debug Only
+	assemblyArguments = BeaconDataExtract(&parser, NULL);
+	BeaconPrintf(CALLBACK_OUTPUT, "[+] Using argumentS: %s", assemblyArguments); // Debug Only
 	
 	//Create slot and pipe names	
 	SIZE_T pipeNameLen = MSVCRT$strlen(pipeName);
