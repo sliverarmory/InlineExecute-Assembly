@@ -49,7 +49,7 @@ jobs:
         $Version = "`"$Version`""
         Get-Content -Path extension.json | .\jq.exe ".version |= `"$Version`"" > ./artifacts/extension.json
         cd artifacts
-        tar.exe -czvf ..\inlineExecute-assembly.tar.gz .
+        tar.exe -czvf ..\inline-execute-assembly.tar.gz .
 
     - name: Sign Package
       run: |
@@ -57,7 +57,7 @@ jobs:
         $Content1 = Get-Content -Path ./artifacts/extension.json
         $Bytes = [System.Text.Encoding]::UTF8.GetBytes($Content1)
         $Encoded = [System.Convert]::ToBase64String($Bytes)
-        .\minisign.exe -s minisign.key -S -m inlineExecute-assembly.tar.gz -t "$Encoded" -x inlineExecute-assembly.minisig
+        .\minisign.exe -s minisign.key -S -m inline-execute-assembly.tar.gz -t "$Encoded" -x inline-execute-assembly.minisig
 
     - name: "Publish Release"
       uses: "marvinpinto/action-automatic-releases@latest"
@@ -65,5 +65,5 @@ jobs:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
         files: |
-          inlineExecute-assembly.minisig
-          inlineExecute-assembly.tar.gz
+          inline-execute-assembly.minisig
+          inline-execute-assembly.tar.gz
