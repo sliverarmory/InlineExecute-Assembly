@@ -39,7 +39,7 @@ jobs:
         mkdir artifacts
         cd .\src\
         rm *.o
-        x86_64-w64-mingw32-gcc.exe -c .\inlineExecute-Assembly.c -o .\artifacts\inlineExecute-Assemblyx64.o
+        x86_64-w64-mingw32-gcc.exe -c .\inlineExecute-Assembly.c -o ..\artifacts\inlineExecute-Assemblyx64.o
         cd ..
 
     - name: Build Package
